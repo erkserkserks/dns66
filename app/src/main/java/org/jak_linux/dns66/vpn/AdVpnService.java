@@ -61,9 +61,9 @@ public class AdVpnService extends VpnService implements Handler.Callback {
             handler.sendMessage(handler.obtainMessage(VPN_MSG_NETWORK_CHANGED, intent));
         }
     };
-    private final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-            .setSmallIcon(R.drawable.ic_menu_info) // TODO: Notification icon
-            .setPriority(Notification.PRIORITY_MIN);
+    //private final NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
+    //        .setSmallIcon(R.drawable.ic_menu_info) // TODO: Notification icon
+    //        .setPriority(Notification.PRIORITY_MIN);
 
     public static int vpnStatusToTextId(int status) {
         switch (status) {
@@ -124,10 +124,10 @@ public class AdVpnService extends VpnService implements Handler.Callback {
 
     private void updateVpnStatus(int status) {
         vpnStatus = status;
-        int notificationTextId = vpnStatusToTextId(status);
-        notificationBuilder.setContentText(getString(notificationTextId));
+        //int notificationTextId = vpnStatusToTextId(status);
+        //notificationBuilder.setContentText(getString(notificationTextId));
 
-        startForeground(10, notificationBuilder.build());
+        //startForeground(10, notificationBuilder.build());
 
         Intent intent = new Intent(VPN_UPDATE_STATUS_INTENT);
         intent.putExtra(VPN_UPDATE_STATUS_EXTRA, status);
@@ -136,9 +136,9 @@ public class AdVpnService extends VpnService implements Handler.Callback {
 
 
     private void startVpn(PendingIntent notificationIntent) {
-        notificationBuilder.setContentTitle(getString(R.string.notification_title));
-        if (notificationIntent != null)
-            notificationBuilder.setContentIntent(notificationIntent);
+        //notificationBuilder.setContentTitle(getString(R.string.notification_title));
+        //if (notificationIntent != null)
+        //    notificationBuilder.setContentIntent(notificationIntent);
         updateVpnStatus(VPN_STATUS_STARTING);
 
         registerReceiver(connectivityChangedReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
